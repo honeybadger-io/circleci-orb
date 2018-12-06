@@ -1,0 +1,37 @@
+version: 2.1
+
+description: Send deployment notifications to the Honeybadger API
+
+commands:
+  notify_deploy:
+    description: |
+      Notify Honeybadger of a deployment. The environment
+      variable `HONEYBADGER_API_KEY` must be set if the `api_key`
+      parameter is not provided.
+    parameters:
+      api_key:
+        type: string
+        default: $HONEYBADGER_API_KEY
+        description: The Honeybadger project API key.
+      environment:
+        type: string
+        default: production
+        description: The deployment environment. Defaults to production.
+      repository:
+        type: string
+        default: $CIRCLE_REPOSITORY_URL
+        description: The URL to a repository, like git@github.com:user/repo.git.
+      revision:
+        type: string
+        default: $CIRCLE_SHA1
+        description: The revision being deployed.
+      username:
+        type: string
+        default: $CIRCLE_USERNAME
+        description: The user who triggered the deployment.
+    steps:
+      - run:
+          name: Notify Honeybadger
+          command: |
+            curl --data "deploy[environment]=<< parameters.environment >>&deploy[local_username]=<< parameters.username >>&deploy[revision]=<< parameters.revision >>&deploy[repository]=<< parameters.repository >>&api_key=<< parameters.api_key >>" "https://api.honeybadger.io/v1/deploys"
+
