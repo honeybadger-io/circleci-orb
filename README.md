@@ -70,8 +70,8 @@ jobs:
       - honeybadger/upload_sourcemap:
           api_key: YOUR_HONEYBADGER_API_KEY
           minified_url: https://example.com/assets/application.min.js
-          minified_file: @path/to/application.min.js
-          source_map: @path/to/application.js.map
+          minified_file: path/to/application.min.js
+          source_map: path/to/application.js.map
 ```
 
 ## More Info
