@@ -10,6 +10,11 @@ To use this orb in your project, you need to enable two settings:
 
 ## Usage
 
+### Deployment Notifications
+
+Sending deployment notifications to Honeybadger allows your team to associate
+spikes in errors to changes that were deployed.
+
 You can add a job definition to `circle.yml` that invokes the
 `notify_deploy` command from this orb:
 
@@ -41,6 +46,8 @@ workflows:
 ```
 
 This will invoke the deploy job after the test job is completed.
+
+## More Info
 
 See https://circleci.com/orbs/registry/orb/honeybadger-io/deploy for
 more info on the parameters you can use.
